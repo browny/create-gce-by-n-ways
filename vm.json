@@ -1,0 +1,31 @@
+{
+  "name": "vm-by-curl",
+  "zone": "projects/PROJECT_ID/zones/asia-east1-b",
+  "machineType": "projects/PROJECT_ID/zones/asia-east1-b/machineTypes/f1-micro",
+  "disks": [
+    {
+      "type": "PERSISTENT",
+      "boot": true,
+      "mode": "READ_WRITE",
+      "autoDelete": true,
+      "initializeParams": {
+        "sourceImage": "projects/debian-cloud/global/images/debian-9-stretch-v20191014",
+        "diskType": "projects/PROJECT_ID/zones/asia-east1-b/diskTypes/pd-standard",
+        "diskSizeGb": "10"
+      }
+    }
+  ],
+  "canIpForward": false,
+  "networkInterfaces": [
+    {
+      "subnetwork": "projects/PROJECT_ID/regions/asia-east1/subnetworks/default",
+      "accessConfigs": [
+        {
+          "name": "External NAT",
+          "type": "ONE_TO_ONE_NAT",
+          "networkTier": "PREMIUM"
+        }
+      ]
+    }
+  ]
+}

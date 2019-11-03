@@ -10,3 +10,9 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+
+# gwg-br
+.DS_Store
+tmp.*
+*.json
+!vm.json
