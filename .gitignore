@@ -16,3 +16,4 @@
 tmp.*
 *.json
 !vm.json
+govm
