@@ -3,6 +3,8 @@
 
 1. Cloud Console
 
+   https://cloud.google.com/compute/docs/quickstart-linux
+
 2. Cloud Shell
 
    ```bash
