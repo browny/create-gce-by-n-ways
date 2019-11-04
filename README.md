@@ -108,5 +108,6 @@
    
    # apply deployment manager config
    gcloud services enable deploymentmanager.googleapis.com
+   (optional) gcloud deployment-manager deployments delete dpm-single-vm
    gcloud deployment-manager deployments create dpm-single-vm --config /lab/tmp.yaml
    ```
