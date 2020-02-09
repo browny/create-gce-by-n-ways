@@ -77,7 +77,7 @@
    # image label detection (ML APIs NOT support user account) 
    curl -X POST -H "Authorization: Bearer "$(gcloud auth print-access-token) \
     -H "Content-Type: application/json; charset=utf-8" \
-    https://vision.googleapis.com/v1/images:annotate -d @request.json 
+    https://vision.googleapis.com/v1/images:annotate -d @/lab/request.json 
    ```
 
 6. **Client library (Golang)**
