@@ -73,6 +73,11 @@
    # get operation (use the operation ID returned from above response)
    curl -H "Authorization: Bearer "$(gcloud auth print-access-token) \
     https://www.googleapis.com/compute/v1/projects/$PROJECT_ID/zones/asia-east1-b/operations/<operation_id>
+	
+   # image label detection (ML APIs NOT support user account) 
+   curl -X POST -H "Authorization: Bearer "$(gcloud auth print-access-token) \
+    -H "Content-Type: application/json; charset=utf-8" \
+    https://vision.googleapis.com/v1/images:annotate -d @request.json 
    ```
 
 6. **Client library (Golang)**
