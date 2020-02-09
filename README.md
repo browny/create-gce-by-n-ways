@@ -3,6 +3,10 @@
 
 **Note**: You need to replace the variables enclosed by `<>` (e.g. `<YOUR_PROJECT_ID>, <SERVICE_ACCOUNT_KEY>`), NOT just copy and paste
 
+**Prerequisites**: Create service accounts with `compute.instanceAdmin.v1` role, download the JSON key file created by Cloud Console
+
+## N ways
+
 1. **Cloud Console**
 
    https://cloud.google.com/compute/docs/quickstart-linux
@@ -10,6 +14,9 @@
 2. **Cloud Shell**
 
    ```bash
+   # no need to authenticate gcloud, it has been authed by default
+   gcloud config list
+    
    # get command from Equivalent command line
    gcloud compute instances create vm-by-cloud-shell --zone=asia-east1-b --machine-type=f1-micro
    ```
@@ -41,12 +48,16 @@
 5. **Curl**
 
    ```bash
+   
    # run an environment with gcloud SDK and mount demo files under /lab directory
    docker pull google/cloud-sdk:latest
    docker run -v `pwd`:/lab -ti google/cloud-sdk:latest bash
 
-   # authentication
-   gcloud auth application-default login
+   # authentication (user account or service account, choose one)
+   # user account
+   gcloud auth login 
+   # service account (recommended)
+   gcloud auth activate-service-account --key-file <SERVICE_ACCOUNT_KEY>
 
    # prepare API request body
    export PROJECT_ID=<YOUR_PROJECT_ID>
@@ -54,13 +65,13 @@
 
    # create compute engine instance
    curl -X POST \
-    -H "Authorization: Bearer "$(gcloud auth application-default print-access-token) \
+    -H "Authorization: Bearer "$(gcloud auth print-access-token) \
     -H "Content-Type: application/json; charset=utf-8" \
     --data @/lab/tmp.json \
     https://www.googleapis.com/compute/v1/projects/$PROJECT_ID/zones/asia-east1-b/instances
 
    # get operation (use the operation ID returned from above response)
-   curl -H "Authorization: Bearer "$(gcloud auth application-default print-access-token) \
+   curl -H "Authorization: Bearer "$(gcloud auth print-access-token) \
     https://www.googleapis.com/compute/v1/projects/$PROJECT_ID/zones/asia-east1-b/operations/<operation_id>
    ```
 
